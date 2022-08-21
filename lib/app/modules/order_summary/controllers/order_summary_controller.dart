@@ -156,7 +156,6 @@ class OrderSummaryController extends GetxController {
   void changePlaceOrderPressed() async {
     placeOrderPressed.value = true;
     final service = FlutterBackgroundService();
-    service.invoke("hitUserId", {"userId": userId});
     await Future.delayed(const Duration(seconds: 1));
     service.invoke("orderPlaced", {});
   }

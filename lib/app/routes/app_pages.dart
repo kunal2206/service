@@ -1,6 +1,5 @@
-// ignore_for_file: non_constant_identifier_names
-
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
 
 import '../core/constants/controllers.dart';
@@ -22,6 +21,8 @@ import '../modules/faq/bindings/faq_binding.dart';
 import '../modules/faq/views/faq_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/ongoing_order_details/bindings/ongoing_order_details_binding.dart';
+import '../modules/ongoing_order_details/views/ongoing_order_details_view.dart';
 import '../modules/order_details/bindings/order_details_binding.dart';
 import '../modules/order_details/views/order_details_view.dart';
 import '../modules/order_summary/bindings/order_summary_binding.dart';
@@ -34,6 +35,8 @@ import '../modules/profile/views/profile_view.dart';
 import '../modules/terms_and_conditions/bindings/terms_and_conditions_binding.dart';
 import '../modules/terms_and_conditions/views/terms_and_conditions_view.dart';
 
+// ignore_for_file: non_constant_identifier_names
+
 // ignore_for_file: constant_identifier_names
 
 part 'app_routes.dart';
@@ -41,7 +44,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const  INITIAL = Routes.AUTHENTICATION;
+  static const INITIAL = Routes.AUTHENTICATION;
 
   static final routes = [
     GetPage(
@@ -50,17 +53,15 @@ class AppPages {
       binding: HomeBinding(),
     ),
     GetPage(
-      name: _Paths.BOOKINGS,
-      page: () => BookingsView(),
-      binding: BookingsBinding(),
-      middlewares: [AuthMiddleware()]
-    ),
+        name: _Paths.BOOKINGS,
+        page: () => BookingsView(),
+        binding: BookingsBinding(),
+        middlewares: [AuthMiddleware()]),
     GetPage(
-      name: _Paths.PROFILE,
-      page: () => const ProfileView(),
-      binding: ProfileBinding(),
-      middlewares: [AuthMiddleware()]
-    ),
+        name: _Paths.PROFILE,
+        page: () => const ProfileView(),
+        binding: ProfileBinding(),
+        middlewares: [AuthMiddleware()]),
     GetPage(
       name: _Paths.CATEGORY,
       page: () => CategoryView(),
@@ -115,6 +116,11 @@ class AppPages {
       name: _Paths.ADDRESS,
       page: () => AddressView(),
       binding: AddressBinding(),
+    ),
+    GetPage(
+      name: _Paths.ONGOING_ORDER_DETAILS,
+      page: () => OngoingOrderDetailsView(),
+      binding: OngoingOrderDetailsBinding(),
     ),
   ];
 }

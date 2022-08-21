@@ -25,6 +25,18 @@ class HomeController extends GetxController {
     }
   }
 
+  Future<String> findUserId() async {
+    final url = Uri.parse("$USER_BY_PHONENUMBER/${authController.phoneNumber}");
+    try {
+      final response = await http.get(url);
+      final responseData = json.decode(response.body);
+
+      return responseData["data"]["_id"];
+    } catch (error) {
+      rethrow;
+    }
+  }
+
   final Rx<List<String>> _carouselUrl = Rx<List<String>>([]);
 
   final Rx<bool> _carouselUrlFirstLoad = Rx<bool>(false);

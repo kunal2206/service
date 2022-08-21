@@ -6,8 +6,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:get/get.dart';
 
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../../core/config/settings.dart';
 import '../../core/constants/controllers.dart';
 import '../controllers/socket_controller.dart';
+
+String? userId;
 
 Future<void> initializeService() async {
   final service = FlutterBackgroundService();
@@ -50,23 +56,25 @@ void _onStart(ServiceInstance service) async {
 
   Get.put(SocketController());
 
-  //TODO:this line should be after the login
-
-  service.invoke(
-    'bringToken',
-  );
-
   print("started");
 
-  // For flutter prior to version 3.0.0
-  // We have to register the plugin manually
+  final prefs = await SharedPreferences.getInstance();
+  final storedValues = prefs.get("userData");
+  final String phoneNumber =
+      json.decode(storedValues.toString())!["phonenumber"];
 
-  service.on('hitUserId').listen((event) {
-    socketController.openConnection(event!["userId"]);
+  await findUserId(phoneNumber).then((id) {
+    if (id != null) {
+      userId = id;
+    }
   });
+
+  socketController.openConnection(userId!);
 
   socketController.channel?.stream.listen((event) async {
     Map<String, dynamic> orderData = json.decode(event);
+
+    print("orderData${orderData.toString()}");
 
     if (orderData["status"]["statusCode"] == 1004) {
       for (var order in placedOrders) {
@@ -112,4 +120,16 @@ void _onStart(ServiceInstance service) async {
     socketController.closeConnection();
     service.stopSelf();
   });
+}
+
+Future<String?> findUserId(String phoneNumber) async {
+  final url = Uri.parse("$USER_BY_PHONENUMBER/$phoneNumber");
+  try {
+    final response = await http.get(url);
+    final responseData = json.decode(response.body);
+    return responseData["data"]["_id"];
+  } catch (error) {
+    print(error);
+  }
+  return null;
 }

@@ -49,9 +49,7 @@ class _OrderDetailSectionState extends State<OrderDetailSection>
     ///handling the event for order completion 1009
     Future.delayed(const Duration(seconds: 1)).then((value) {
       widget.controller.findOrderById(data['orderId']).then((order) {
-        setState(() {
-          widget.controller.ongoingOrder.value = order;
-        });
+        widget.controller.ongoingOrder.value = order;
 
         ///event to send order has been accepted 1001
         if (data["status"]["statusCode"] == 1004) {

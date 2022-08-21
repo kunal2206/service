@@ -19,6 +19,7 @@ abstract class Routes {
   static const ORDER_DETAILS = _Paths.ORDER_DETAILS;
   static const ORDER_SUMMARY = _Paths.ORDER_SUMMARY;
   static const ADDRESS = _Paths.ADDRESS;
+  static const ONGOING_ORDER_DETAILS = _Paths.ONGOING_ORDER_DETAILS;
 }
 
 abstract class _Paths {
@@ -37,4 +38,5 @@ abstract class _Paths {
   static const ORDER_DETAILS = '/order-details';
   static const ORDER_SUMMARY = '/order-summary';
   static const ADDRESS = '/address';
+  static const ONGOING_ORDER_DETAILS = '/ongoing-order-details';
 }

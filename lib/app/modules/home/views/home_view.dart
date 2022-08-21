@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_background_service/flutter_background_service.dart';
 
 import 'package:get/get.dart';
 
-import '../../../core/constants/controllers.dart';
 import '../../../core/constants/palette.dart';
 import '../../../global_widgets/bottom_navigation_bar.dart';
 import '../../../global_widgets/custom_carousel.dart';
@@ -30,7 +28,6 @@ class HomeView extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       key: _scaffoldKey,
       extendBodyBehindAppBar: true,

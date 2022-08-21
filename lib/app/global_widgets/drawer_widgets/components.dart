@@ -26,7 +26,6 @@ class AuthenticationButton extends StatelessWidget {
         ///logout when the logout button is pressed
         if (logout) {
           authController.logout();
-          print("hello");
           final service = FlutterBackgroundService();
 
           service.invoke("stopService");

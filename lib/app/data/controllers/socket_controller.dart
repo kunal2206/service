@@ -15,7 +15,6 @@ class SocketController extends GetxController {
     if (channel != null) {
       await channel!.sink.close();
     }
-
     channel = IOWebSocketChannel.connect("$WEBSOCKETURI=$servicemanId");
   }
 

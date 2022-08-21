@@ -36,7 +36,7 @@ class OrderDetailsButton extends StatelessWidget {
           width: MediaQuery.of(context).size.width * 0.8,
           child: TextButton(
             onPressed: () {
-              Get.toNamed(Routes.ORDER_DETAILS, arguments: order);
+              Get.toNamed(Routes.ONGOING_ORDER_DETAILS, arguments: order);
             },
             child: Text(
               'View Details',
